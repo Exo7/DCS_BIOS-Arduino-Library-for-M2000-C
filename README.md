@@ -5,6 +5,7 @@ This is an Arduino library that makes it easy to write sketches that talk to DCS
 Based on the Joe Boecker original work : 
 
 Add Dimmer function that allow to control external illumination via Arduino board slaved by the DCS datas.
+
 Add support of BCD Wheelthumbs.
 
 
