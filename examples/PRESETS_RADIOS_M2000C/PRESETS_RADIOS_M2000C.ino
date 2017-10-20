@@ -25,8 +25,8 @@ LedControl lc=LedControl(10,11,12,1);
 
 /* Fonction permettant la récupération et l'affichage du preset selectionné sur la radio UHF */
 void onUhfPresetChange(unsigned int uhfPresetValue) {
-unsigned int firstDigit;
-unsigned int secondDigit;
+  unsigned int firstDigit;
+  unsigned int secondDigit;
    if (uhfPresetValue>2000 && uhfPresetValue<5000){firstDigit=0;secondDigit=1;}
    else if (uhfPresetValue>5000 && uhfPresetValue<7000){firstDigit=0;secondDigit=2;}
    else if (uhfPresetValue>7000 && uhfPresetValue<11000){firstDigit=0;secondDigit=3;}
@@ -50,7 +50,7 @@ unsigned int secondDigit;
 lc.setDigit(0,0,firstDigit,false);
 lc.setDigit(0,1,secondDigit,false);
 }
-DcsBios::IntegerBuffer uhfPresetBuffer(0x309c, 0xffff, 0, onUhfPresetChange);
+DcsBios::IntegerBuffer uhfPresetBuffer(0x60e4, 0xffff, 0, onUhfPresetChange);
 
 
 /* Fonction permettant la récupération et l'affichage du preset selectionné sur la radio UHF */
@@ -80,14 +80,15 @@ unsigned int secondDigit;
 lc.setDigit(0,3,firstDigit,false);
 lc.setDigit(0,4,secondDigit,false); 
 }
-DcsBios::IntegerBuffer uvhfPresetBuffer(0x30a6, 0xffff, 0, onUvhfPresetChange);
+DcsBios::IntegerBuffer uvhfPresetBuffer(0x60de, 0xffff, 0, onUvhfPresetChange);
 
 
 
 
 /* Fonctions pour les encodeurs */
-DcsBios::RotaryEncoder uhfPresetKnob("UHF_PRESET_KNOB", "DEC", "INC", 6, 7);
-DcsBios::RotaryEncoder uvhfPresetKnob("UVHF_PRESET_KNOB", "DEC", "INC", 4, 5);
+DcsBios::RotaryEncoder uhfPresetKnob("UHF_PRESET_KNOB", "-3200", "+3200", 6, 7);
+DcsBios::RotaryEncoder uvhfPresetKnob("UVHF_PRESET_KNOB", "-3200", "+3200", 4, 5);
+
 
 
 void setup() {
